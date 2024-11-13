@@ -15,7 +15,9 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 FROM build-deps AS build
 COPY . .
-RUN export $(cat .env.example) && \
+# RUN export $(cat .env.example) && \
+# 从 .env.example 中读取并导出环境变量
+RUN export $(grep -v '^#' .env.example | xargs) && \
     export DOCKER=true && \
     pnpm run build
 
