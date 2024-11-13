@@ -30,14 +30,14 @@
 
 ### Docker
 
-1. `docker pull ghcr.io/ccbikai/broadcastchannel:main`
-2. `docker run -d --name broadcastchannel -p 4321:4321 -e CHANNEL=miantiao_me ghcr.io/ccbikai/broadcastchannel:main`
+1. `docker pull ghcr.io/wu529778790/telegram.shenzjd.com:latest`
+2. `docker run -d --name telegram.shenzjd.com -p 4321:4321 -e CHANNEL=miantiao_me ghcr.io/wu529778790/telegram.shenzjd.com:latest`
 
 ### Serverless
 
-1. [Fork](https://github.com/ccbikai/BroadcastChannel/fork) 此项目到你 GitHub
+1. [Fork](https://github.com/wu529778790/telegram.shenzjd.com/fork) 此项目到你 GitHub
 2. 在 Cloudflare/Netlify/Vercel 创建项目
-3. 选择 `BroadcastChannel` 项目和 `Astro` 框架
+3. 选择 `telegram.shenzjd.com` 项目和 `Astro` 框架
 4. 配置环境变量 `CHANNEL` 为你的频道名称。此为最小化配置，更多配置见下面的配置项
 5. 保存并部署
 6. 绑定域名（可选）。
