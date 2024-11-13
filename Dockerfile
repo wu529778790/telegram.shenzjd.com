@@ -15,31 +15,10 @@ RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 FROM build-deps AS build
 COPY . .
+RUN export $(cat .env.example) && \
+    export DOCKER=true && \
+    pnpm run build
 
-ENV CHANNEL=shenzjd_com
-ENV LOCALE=zh-cn
-ENV TIMEZONE=Asia/Shanghai
-ENV TELEGRAM=shenzjd
-ENV TWITTER=
-ENV GITHUB=wu529778790
-ENV DISCORD=https://DISCORD.com
-ENV PODCASRT=https://PODCASRT.com
-ENV MASTODON=mastodon.social/@Mastodon
-ENV BLUESKY=bsky.app
-ENV FOOTER_INJECT=FOOTER_INJECT
-ENV HEADER_INJECT=HEADER_INJECT
-ENV NO_FOLLOW=false
-ENV NO_INDEX=false
-ENV TELEGRAM_HOST=telegram.dog
-ENV STATIC_PROXY=""
-ENV GOOGLE_SEARCH_SITE=""
-ENV TAGS=""
-ENV COMMENTS="true"
-ENV LINKS=""
-ENV NAVS=""
-ENV DOCKER=true
-
-RUN pnpm run build
 FROM base AS runtime
 # COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
