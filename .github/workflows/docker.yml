@@ -13,21 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '19'
-          cache: pnpm
-
-      - name: Install Pnpm
-        run: npm install -g pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build project
-        run: pnpm run build
-
       - name: Update version and commit
         run: |
           git config user.name 'github-actions[bot]'
@@ -50,29 +35,17 @@ jobs:
           context: .
           push: true
           tags: |
-            wu529778790/blog.shenzjd.com:${{ env.new-version }}
-            wu529778790/blog.shenzjd.com:latest
+            wu529778790/telegram.shenzjd.com:${{ env.new-version }}
+            wu529778790/telegram.shenzjd.com:latest
 
       - name: Push changes
         run: git push
-
-      - name: Deploy to GitHub Pages
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages
-          git rm -rf .
-          cp -rf docs/.vuepress/dist/* .
-          echo 'docs/.vuepress/dist/' >> .gitignore
-          echo 'node_modules/' >> .gitignore
-          git add .
-          git commit -m "Deploy to GitHub Pages"
-          git push -f origin gh-pages
 
       - name: Update Docker
         run: |
           curl -X POST https://api.shenzjd.com/docker \
           -H "Content-Type: application/json" \
           -d '{
-            "dockerName": "wu529778790/blog.shenzjd.com",
+            "dockerName": "wu529778790/telegram.shenzjd.com",
             "dockerComposeYml": "$(cat docker-compose.yml)"
           }'
