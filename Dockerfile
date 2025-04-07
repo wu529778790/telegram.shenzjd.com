@@ -33,7 +33,7 @@ ENV PORT=4321
 ENV CHANNEL=shenzjd_com
 ENV LOCALE=zh-cn
 ENV TIMEZONE=Asia/Shanghai
-ENV TELEGRAM=shenzjd
+ENV TELEGRAM=shenzjd_com
 ENV GITHUB=wu529778790
 ENV NAVS=神族九帝,https://shenzjd.com;技术博客,https://blog.shenzjd.com;网盘资源,https://alist.shenzjd.com;今日热点,https://news.shenzjd.com;
 
